@@ -1,0 +1,40 @@
+version: '2.1'
+services:
+  database:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    ports:
+      - "33060:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: Book_Store_Hiber
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+
+  phpmyadmin:
+    depends_on:
+      - database
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    links:
+      - database
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_ARBITRARY=1
+
+  bookstore_app:
+    build: .
+    image: goncharova_book_store_hiber
+    container_name: goncharova_book_store_hiber
+    restart: on-failure
+    environment:
+      MYSQL_DATABASE_HOST: database
+    depends_on:
+      - database
+
+
+
+
