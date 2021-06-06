@@ -7,9 +7,8 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="testBean"
-          class="com.solution.goncharova.TestBean">
-        <constructor-arg value="Anna"/>
+    <bean id="musicBean"
+          class="com.solution.goncharova.RockMusic">
     </bean>
 
 </beans>
